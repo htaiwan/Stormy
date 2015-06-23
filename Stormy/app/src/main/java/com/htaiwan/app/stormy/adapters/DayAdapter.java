@@ -47,7 +47,7 @@ public class DayAdapter extends BaseAdapter {
             // brand new
             convertView = LayoutInflater.from(mContext).inflate(R.layout.daily_list_item, null);
             holder = new ViewHolder();
-            holder.iconImageView = (ImageView) convertView.findViewById(R.id.iconimageView);
+            holder.iconImageView = (ImageView) convertView.findViewById(R.id.iconView);
             holder.temptureLabel = (TextView) convertView.findViewById(R.id.temptureLabel);
             holder.dayLabel = (TextView) convertView.findViewById(R.id.daynameLabel);
 
@@ -61,9 +61,16 @@ public class DayAdapter extends BaseAdapter {
 
         holder.iconImageView.setImageResource(day.getIconId());
         holder.temptureLabel.setText(day.getTemptureMax() + "");
-        holder.dayLabel.setText(day.getDayOfTheWeek());
 
-        return null;
+        if (position == 0) {
+            holder.dayLabel.setText("Today");
+        }
+        else {
+            holder.dayLabel.setText(day.getDayOfTheWeek());
+        }
+
+
+        return convertView;
     }
 
     // ViewHolder Design Pattern ，  元件重複使用
